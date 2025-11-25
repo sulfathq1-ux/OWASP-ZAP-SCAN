@@ -2,6 +2,12 @@ name: OWASP ZAP Integration with GitHub Actions
 
 on: [push]
 
+permissions:
+  contents: write
+  security-events: write
+  actions: read
+  issues: write
+
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
