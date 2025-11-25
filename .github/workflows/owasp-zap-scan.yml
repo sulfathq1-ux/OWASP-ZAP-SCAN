@@ -1,6 +1,6 @@
 name: OWASP ZAP Integration with GitHub Actions
- on: [push]
- jobs:
+ on:[push]
+jobs:
   zap_scan:
     runs-on: ubuntu-latest
     name: Scan the web application
@@ -15,3 +15,5 @@ name: OWASP ZAP Integration with GitHub Actions
           target: 'http://testphp.vulnweb.com/'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
+
+            
