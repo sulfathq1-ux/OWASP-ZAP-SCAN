@@ -7,6 +7,9 @@ permissions:
   actions: write
   issues: write
   security-events: write
+  id-token: write
+  checks: write
+  statuses: write
 
 jobs:
   zap_scan:
