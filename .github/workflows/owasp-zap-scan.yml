@@ -3,6 +3,9 @@ name: OWASP ZAP Scan
 on:
   push:
 
+permissions:
+  contents: read
+
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
@@ -11,17 +14,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.7.0
+      - name: Run ZAP Full Scan (No Upload)
+        uses: zaproxy/action-full-scan@v0.7.0
         with:
           target: "http://testphp.vulnweb.com/"
+          cmd_options: "-a"
+          allow_issue_writing: false     # 🔥 prevents GitHub upload
+          allow_markdown_writing: false  # 🔥 prevents repo write
+          allow_html_writing: false      # 🔥 prevents repo write
 
-      - name: Upload ZAP Reports
+      - name: Upload Reports Manually
         uses: actions/upload-artifact@v4
         with:
           name: zap-scan-reports
           path: |
-            zap_report.html
-            zap_report.md
-            zap_report.json
+            report_html.html
+            report_md.md
+            report_json.json
           if-no-files-found: warn
