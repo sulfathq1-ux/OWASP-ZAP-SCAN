@@ -4,7 +4,7 @@ on:
   push:
 
 permissions:
-  contents: read   # only reading repo is needed
+  contents: read
 
 jobs:
   zap_scan:
@@ -20,10 +20,10 @@ jobs:
           target: "http://testphp.vulnweb.com/"
           cmd_options: "-a"
 
-      - name: Upload Report Artifacts
+      - name: Upload ZAP Reports
         uses: actions/upload-artifact@v4
         with:
-          name: zap-report
+          name: zap-scan-reports
           path: |
             report_html.html
             report_md.md
