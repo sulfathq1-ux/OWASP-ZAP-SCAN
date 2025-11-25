@@ -4,9 +4,9 @@ on: [push]
 
 permissions:
   contents: write
-  security-events: write
-  actions: read
+  actions: write
   issues: write
+  security-events: write
 
 jobs:
   zap_scan:
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
 
@@ -26,6 +26,3 @@ jobs:
           target: 'http://testphp.vulnweb.com/'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
-
-
-            
